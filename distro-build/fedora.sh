@@ -34,7 +34,7 @@ bootstrap_distribution() {
 		chroot "${WORKDIR}/fedora-$(translate_arch "$arch")" dnf reinstall -y '*'
 		chroot "${WORKDIR}/fedora-$(translate_arch "$arch")" dnf install -y passwd util-linux
 		chroot "${WORKDIR}/fedora-$(translate_arch "$arch")" dnf clean all
-		chmod 4755 "${WORKDIR}/fedora-$(translate_arch "$arch")"/usr/bin/sudo
+		chmod 4755 "${WORKDIR}/fedora-$(translate_arch "$arch")"/data/data/com.andronux.termux/files/usr/bin/sudo
 		EOF
 
 		archive_rootfs "${ROOTFS_DIR}/fedora-$(translate_arch "$arch")-pd-${CURRENT_VERSION}.tar.xz" \

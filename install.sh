@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/data/data/com.andronux.termux/files/usr/bin/env bash
 set -e
 : "${TERMUX_APP_PACKAGE:="com.andronux.termux"}"
-: "${TERMUX_PREFIX:="/data/data/${TERMUX_APP_PACKAGE}/files/usr"}"
+: "${TERMUX_PREFIX:="/data/data/${TERMUX_APP_PACKAGE}/files/data/data/com.andronux.termux/files/usr"}"
 : "${TERMUX_ANDROID_HOME:="/data/data/${TERMUX_APP_PACKAGE}/files/home"}"
 
 echo "Installing $TERMUX_PREFIX/bin/proot-distro"

@@ -53,7 +53,7 @@ DEFAULT_PRIMARY_NAMESERVER="8.8.8.8"
 DEFAULT_SECONDARY_NAMESERVER="8.8.4.4"
 
 # PATH environment variable for distributions.
-DEFAULT_PATH_ENV="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:@TERMUX_PREFIX@/bin:/system/bin:/system/xbin"
+DEFAULT_PATH_ENV="/data/data/com.andronux.termux/files/usr/local/sbin:/data/data/com.andronux.termux/files/usr/local/bin:/data/data/com.andronux.termux/files/usr/sbin:/data/data/com.andronux.termux/files/usr/bin:/sbin:/bin:/data/data/com.andronux.termux/files/usr/local/games:/data/data/com.andronux.termux/files/usr/games:@TERMUX_PREFIX@/bin:/system/bin:/system/xbin"
 
 # Default fake kernel version.
 # Note: faking kernel version is required when using PRoot-Distro on
@@ -740,10 +740,10 @@ run_proot_cmd() {
 		--bind="${INSTALLED_ROOTFS_DIR}/${distro_name}/proc/.sysctl_entry_cap_last_cap:/proc/sys/kernel/cap_last_cap" \
 		--bind="${INSTALLED_ROOTFS_DIR}/${distro_name}/proc/.sysctl_inotify_max_user_watches:/proc/sys/fs/inotify/max_user_watches" \
 		--bind="${INSTALLED_ROOTFS_DIR}/${distro_name}/sys/.empty:/sys/fs/selinux" \
-		/usr/bin/env -i \
+		/data/data/com.andronux.termux/files/usr/bin/env -i \
 			"HOME=/root" \
 			"LANG=C.UTF-8" \
-			"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+			"PATH=/data/data/com.andronux.termux/files/usr/local/sbin:/data/data/com.andronux.termux/files/usr/local/bin:/data/data/com.andronux.termux/files/usr/sbin:/data/data/com.andronux.termux/files/usr/bin:/sbin:/bin" \
 			"TERM=${TERM-xterm-256color}" \
 			"TMPDIR=/tmp" \
 			"$@"
@@ -1729,7 +1729,7 @@ command_login() {
 
 	# Using '-i' to ensure that we can fully control which
 	# environment variables will be inherited by shell.
-	set -- "/usr/bin/env" "-i" \
+	set -- "/data/data/com.andronux.termux/files/usr/bin/env" "-i" \
 		"${login_env_vars[@]}" \
 		"COLORTERM=${COLORTERM-}" \
 		"HOME=${login_home}" \

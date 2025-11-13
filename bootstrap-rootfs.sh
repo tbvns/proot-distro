@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.andronux.termux/files/usr/bin/env bash
 ##
 ## Script for making rootfs creation easier.
 ##
