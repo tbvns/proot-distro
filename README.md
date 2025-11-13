@@ -268,7 +268,7 @@ proot-distro login --user admin debian
 
 You can run a custom command as well:
 ```
-proot-distro login debian -- /data/data/com.andronux.termux/files/usr/local/bin/mycommand --sample-option1
+proot-distro login debian -- /usr/local/bin/mycommand --sample-option1
 ```
 
 Argument `--` acts as terminator of `proot-distro login` options processing.

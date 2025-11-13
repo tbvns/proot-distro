@@ -13,7 +13,7 @@ bootstrap_distribution() {
 			"https://github.com/deepin-community/deepin-rootfs/raw/master/deepin.gpg"
 
 		sudo mmdebstrap \
-			--hook-dir=/data/data/com.andronux.termux/files/usr/share/mmdebstrap/hooks/merged-usr \
+			--hook-dir=/usr/share/mmdebstrap/hooks/merged-usr \
 			--keyring "${WORKDIR}/deepin-keyring.gpg" \
 			--architectures=${arch} \
 			--variant=minbase \
