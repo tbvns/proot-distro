@@ -123,7 +123,7 @@ persistent and should not be changed by user.
 **1.15** Proot-Distro uses string place holders to define certain common values
 for some variables:
 
-* `@TERMUX_APP_PACKAGE@` - sets Termux app package (com.termux).
+* `@TERMUX_APP_PACKAGE@` - sets Termux app package (com.andronux.termux).
 
 * `@TERMUX_PREFIX@` - sets the installation prefix path.
 
