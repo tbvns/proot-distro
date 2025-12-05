@@ -295,7 +295,7 @@ Login command supports these behavior modifying options:
 
   * /apex (only Android 10+)
   * /data/dalvik-cache
-  * /data/data/com.andronux.termux
+  * /data/data/com.andronux.manager
   * /sdcard
   * /storage
   * /system
