@@ -5,6 +5,8 @@ Linux distribution installations. It does not require root or any special ROM,
 kernel, etc. Everything you need to get started is the latest version of
 [Termux] application. See [Installing](#installing) for details.
 
+If you like the project and want to support development, consider [donating](#donate).
+
 ***
 
 ## Bundled distributions
@@ -16,18 +18,22 @@ version of distribution (stable, lts or rolling-release) with rare exceptions.
 
 | Distribution     | PD alias   | Version    | Status        |
 |------------------|------------|------------|---------------|
+| Termux           | termux     | rolling    | supported     |
 | Adelie Linux     | adelie     | 1.0-beta6  | no i686       |
+| AlmaLinux        | almalinux  | 10         | only 64bit    |
 | Alpine Linux     | alpine     | 3.22.2     | frozen        |
 | Arch Linux       | archlinux  | rolling    | supported     |
 | Artix Linux      | artix      | rolling    | aarch64 only  |
-| Chimera Linux    | chimera    | rolling    | only 64bit    |
+| Chimera Linux    | chimera    | rolling    | unstable      |
 | Debian           | debian     | trixie     | supported     |
 | Deepin           | deepin     | beige      | only 64bit    |
-| Fedora           | fedora     | 42         | unstable      |
+| Fedora           | fedora     | 43         | unstable      |
 | Manjaro          | manjaro    | rolling    | aarch64 only  |
-| OpenSUSE         | opensuse   | Leap 15.6  | only 64bit    |
-| Pardus           | pardus     | yirmiuc    | no armv7      |
+| OpenSUSE         | opensuse   | Leap 16.0  | only 64bit    |
+| Oracle Linux     | oracle     | 10         | only 64bit    |
+| Pardus           | pardus     | yirmibes   | no armv7      |
 | Rocky Linux      | rockylinux | 10         | only 64bit    |
+| Trisquel         | trisquel   | aramo      | supported     |
 | Ubuntu           | ubuntu     | 25.10      | no i686       |
 | Void Linux       | void       | rolling    | supported     |
 | Guix             | N/A        | N/A        | not supported |
@@ -71,6 +77,18 @@ months as outdated.
 
 Remember that `proot` (core of `proot-distro`) does not provide high grade
 isolation like `docker`, `firejail` and similar well-known utilities.
+
+### For ARMv9 users
+
+ARMv9 compliant SoCs do not include support for 32-bit instructions set. That's
+a major difference from ARMv8.
+
+Because some users may not expect that 32-bit support was dropped at hardware
+level, `proot-distro` will show a red warning when detected missing 32-bit
+instructions. We'll remove the warning once ARMv9 will become more common.
+
+On devices with ARMv9 architecture the 32-bit distributions will be treated
+as of foreign architecture and you will need `qemu-user-arm` emulator package.
 
 ## Installing
 
@@ -478,6 +496,11 @@ Supported architectures are: `aarch64`, `arm`, `i686`, `riscv64`, `x86_64`.
 
 `DISTRO_NAME`: a name of distribution, something like "Alpine Linux (3.14.1)".
 
+`DISTRO_TYPE`: a type of distribution, can be one of:
+
+  * `normal`: default, for regular distributions
+  * `termux`: special, for packaged Termux bootstrap environment
+
 `DISTRO_COMMENT`: comments for current distribution.
 
 Normally this variable is not needed. Use it to notify user that something is
@@ -620,6 +643,19 @@ these choices:
 
 Either of choices would require updating links and sha-256 checksums in files
 stored under `$PREFIX/etc/proot-distro`.
+
+## Donate
+
+Support is important to keep the project up in a long term. I'm grateful for
+any amount of tip in cryptocurrency:
+
+* Bitcoin: `bc1qxuwtc0sfjt43n3sufck6s0gaeand8eaeguajxs`
+* Ethereum: `0x1F5196A5b0120D4a66FCAABBe71728239B06EC12`
+* Tron: `TEJiwRMMGV1JXvRYDRVJ1qw7kFgskEk3sJ`
+
+More convenient options will be added in future.
+
+*Who will receive the funds: [@sylirre](https://github.com/sylirre), the author and lead maintainer of PRoot-Distro project.*
 
 ## Forking
 
