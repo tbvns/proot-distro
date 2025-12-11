@@ -17,10 +17,10 @@ TARBALL_SHA256['x86_64']="8b36eafb6bf25ae32dd1646ddd5fe5b614510b68509df4eecf5a3e
 distro_setup() {
 	# Create cache directory used by package manager.
 	# It also will be created during login if was deleted.
-	mkdir -p ./data/data/com.termux/cache
+	mkdir -p ./data/data/com.andronux.termux/cache
 
 	# Run bootstrap second stage if exist.
-	if [ -e ./data/data/com.termux/files/usr/etc/termux/termux-bootstrap/second-stage/termux-bootstrap-second-stage.sh ]; then
-		run_proot_cmd bash ./data/data/com.termux/files/usr/etc/termux/termux-bootstrap/second-stage/termux-bootstrap-second-stage.sh
+	if [ -e ./data/data/com.andronux.termux/files/usr/etc/termux/termux-bootstrap/second-stage/termux-bootstrap-second-stage.sh ]; then
+		run_proot_cmd bash ./data/data/com.andronux.termux/files/usr/etc/termux/termux-bootstrap/second-stage/termux-bootstrap-second-stage.sh
 	fi
 }

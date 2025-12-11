@@ -194,7 +194,7 @@ detect_cpu_arch() {
 	local cpu_arch
 
 	local i
-	for i in /bin/bash /bin/sh /bin/su /bin/busybox /data/data/com.termux/files/usr/bin/bash; do
+	for i in /bin/bash /bin/sh /bin/su /bin/busybox /data/data/com.andronux.termux/files/usr/bin/bash; do
 		if [ "$(dd if="${dist_path}${i}" bs=1 skip=1 count=3 2>/dev/null)" = "ELF" ]; then
 			cpu_arch=$(file -L "${dist_path}${i}" | cut -d':' -f2- | cut -d',' -f2 | cut -d' ' -f2-)
 			[ -n "$cpu_arch" ] && break
@@ -484,24 +484,24 @@ command_install() {
 		msg "${BLUE}[${GREEN}*${BLUE}] ${CYAN}Extracting rootfs, please wait...${RST}"
 
 		if [ "${DISTRO_TYPE}" = "termux" ]; then
-			mkdir -p "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/home"
+			mkdir -p "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/home"
 			if [ "$(file --brief --mime-type "${DOWNLOAD_CACHE_DIR}/${archive_name}")" = "application/zip" ]; then
 				# Termux uses plain ZIP archive to deliver bootstrap environment.
 				# It contains only directories and files. Access modes typically
 				# recorded within the archive too.
-				unzip -q -d "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/usr" \
+				unzip -q -d "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/usr" \
 					"${DOWNLOAD_CACHE_DIR}/${archive_name}"
 			else
 				# Fall back to tar if format isn't zip.
-				mkdir -p "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/usr"
-				tar -C "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/usr" \
+				mkdir -p "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/usr"
+				tar -C "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/usr" \
 					--warning=no-unknown-keyword --delay-directory-restore \
 					--preserve-permissions --strip="${TARBALL_STRIP_OPT}" \
 					-xf "${DOWNLOAD_CACHE_DIR}/${archive_name}"
 			fi
 
 			local cur_wd=$(pwd)
-			cd "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/usr"
+			cd "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/usr"
 
 			# Symlinks must be manually restored using instructions from
 			# file 'SYMLINKS.txt'.
@@ -515,12 +515,12 @@ command_install() {
 
 			cd "$cur_wd"
 
-			if [ -f "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/usr/etc/bash.bashrc" ]; then
+			if [ -f "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/usr/etc/bash.bashrc" ]; then
 				msg "${BLUE}[${GREEN}*${BLUE}] ${CYAN}Updating PS1 in bash.bashrc...${RST}"
 				echo '# Added by proot-distro:' >> \
-					"${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/usr/etc/bash.bashrc"
+					"${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/usr/etc/bash.bashrc"
 				echo 'PS1="\\[\\e[0;35m\\]\\\PD\\\\\[\\e[0m\\] ${PS1}"' >> \
-					"${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/files/usr/etc/bash.bashrc"
+					"${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/files/usr/etc/bash.bashrc"
 			fi
 		else
 			# Prevent possible conflicts with proot.
@@ -811,11 +811,11 @@ run_proot_cmd() {
 			--bind=/proc \
 			--bind=/sys \
 			"${extra_binds[@]}" \
-			/data/data/com.termux/files/usr/bin/env \
-			HOME="/data/data/com.termux/files/home" \
-			PATH="/data/data/com.termux/files/usr/bin" \
-			PREFIX="/data/data/com.termux/files/usr" \
-			TMPDIR="/data/data/com.termux/files/usr/tmp" \
+			/data/data/com.andronux.termux/files/usr/bin/env \
+			HOME="/data/data/com.andronux.termux/files/home" \
+			PATH="/data/data/com.andronux.termux/files/usr/bin" \
+			PREFIX="/data/data/com.andronux.termux/files/usr" \
+			TMPDIR="/data/data/com.andronux.termux/files/usr/tmp" \
 			"$@"
 
 		# Restore LD_PRELOAD after proot.
@@ -1785,14 +1785,14 @@ command_login() {
 	local login_home login_shell
 	if [ "${dist_type-normal}" = "termux" ]; then
 		if [ -z "${login_wd}" ]; then
-			login_wd="/data/data/com.termux/files/home"
+			login_wd="/data/data/com.andronux.termux/files/home"
 		fi
-		login_shell="/data/data/com.termux/files/usr/bin/login"
-		set -- "/data/data/com.termux/files/usr/bin/env" \
-			"HOME=/data/data/com.termux/files/home" \
-			"PATH=/data/data/com.termux/files/usr/bin" \
-			"PREFIX=/data/data/com.termux/files/usr" \
-			"TMPDIR=/data/data/com.termux/files/usr/tmp" \
+		login_shell="/data/data/com.andronux.termux/files/usr/bin/login"
+		set -- "/data/data/com.andronux.termux/files/usr/bin/env" \
+			"HOME=/data/data/com.andronux.termux/files/home" \
+			"PATH=/data/data/com.andronux.termux/files/usr/bin" \
+			"PREFIX=/data/data/com.andronux.termux/files/usr" \
+			"TMPDIR=/data/data/com.andronux.termux/files/usr/tmp" \
 			"${login_shell}" \
 			"$@"
 	else
@@ -2081,7 +2081,7 @@ command_login() {
 			set -- "--bind=@TERMUX_HOME@" "$@"
 		else
 			# For package manager in 'termux' distribution.
-			mkdir -p "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.termux/cache"
+			mkdir -p "${INSTALLED_ROOTFS_DIR}/${distro_name}/data/data/com.andronux.termux/cache"
 		fi
 
 		# Bind whole /storage directory when it is readable. This gives
@@ -2156,7 +2156,7 @@ command_login() {
 	# Ignores --isolated.
 	if $use_termux_home; then
 		if [ "${dist_type-normal}" = "termux" ]; then
-			set -- "--bind=@TERMUX_HOME@:/data/data/com.termux/files/home" "$@"
+			set -- "--bind=@TERMUX_HOME@:/data/data/com.andronux.termux/files/home" "$@"
 		else
 			if [ "$login_user" = "root" ]; then
 				set -- "--bind=@TERMUX_HOME@:/root" "$@"
