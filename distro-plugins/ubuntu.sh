@@ -14,7 +14,7 @@ TARBALL_SHA256['x86_64']="74f7c8492a2f3e720d5aa89de6572cbb90b14c4b21dee87ab33416
 distro_setup() {
 	# Configure en_US.UTF-8 locale.
 	sed -i -E 's/#[[:space:]]?(en_US.UTF-8[[:space:]]+UTF-8)/\1/g' ./etc/locale.gen
-	run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+	# run_proot_cmd DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 
 	# Configure Mozilla PPA.
 	echo "Configuring PPA repository for Firefox and Thunderbird..."
